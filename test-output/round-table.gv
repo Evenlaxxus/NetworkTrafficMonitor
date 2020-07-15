@@ -1,0 +1,12 @@
+// The Round Table
+digraph {
+	node [image="switch.png"]
+	node [shape=plaintext]
+	node [arrowhead=none]
+	A [label="192.168.0.1"]
+	B [label="192.168.0.2"]
+	L [label="192.168.0.3"]
+	A -> B
+	A -> L
+	B -> L [constraint=false]
+}
