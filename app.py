@@ -1,8 +1,8 @@
-from frontend import grafs
+from frontend import graphs
 
 
 if __name__ == "__main__":
-    grafs.graf()
+    graphs.graf()
 
 
 
