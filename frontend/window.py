@@ -16,7 +16,7 @@ class Window(Frame):
         self.generate.pack()
 
     def generateGraph(self):
-        (graph,) = pydot.graph_from_dot_file('graph-output/round-table.gv')
+        (graph,) = pydot.graph_from_dot_file('graph-output/graph.gv')
         graph.write_png('graph-output/somefile.png')
         load = Image.open("graph-output/somefile.png")
         render = ImageTk.PhotoImage(load)
