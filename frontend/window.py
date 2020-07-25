@@ -3,6 +3,8 @@ import pydot
 # pip install pillow
 from PIL import Image, ImageTk
 
+from frontend import graphs
+
 
 class Window(Frame):
     def __init__(self, master=None):
@@ -16,9 +18,7 @@ class Window(Frame):
         self.generate.pack()
 
     def generateGraph(self):
-        (graph,) = pydot.graph_from_dot_file('graph-output/graph.gv')
-        graph.write_png('graph-output/somefile.png')
-        load = Image.open("graph-output/somefile.png")
+        load = Image.open(graphs.graf())
         render = ImageTk.PhotoImage(load)
         img = Label(self, image=render)
         img.image = render
@@ -29,5 +29,5 @@ def makeWindow():
     root = Tk()
     app = Window(root)
     root.wm_title("Network Traffic Monitor")
-    root.geometry("400x300")
+    root.geometry("1024x768")
     root.mainloop()
