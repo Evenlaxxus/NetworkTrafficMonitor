@@ -5,10 +5,13 @@ from graphviz import Digraph, Graph
 
 
 def sniffing():
-    cap = pyshark.LiveCapture(interface="Ethernet")
+    # cap = pyshark.LiveCapture(interface="Ethernet")
     # cap.sniff(timeout=50)
-    for packet in cap.sniff_continuously(packet_count=5):
-        print('Just arrived:', packet)
+    cap = pyshark.FileCapture('C:/Users/Evenlaxxus/Desktop/test.pcapng')
+    for item in cap:
+        print(item)
+    # for packet in cap.sniff_continuously(packet_count=5):
+    #     print('Just arrived:', packet)
 
 
 def graf():
@@ -31,4 +34,4 @@ def graf():
 
 
 if __name__ == "__main__":
-    graf()
+    sniffing()

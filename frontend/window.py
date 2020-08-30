@@ -6,6 +6,13 @@ from PIL import Image, ImageTk
 from frontend import graphs
 
 
+def resizeImage(width, img):
+    wpercent = (width / float(img.size[0]))
+    hsize = int((float(img.size[1]) * float(wpercent)))
+    img = img.resize((width, hsize), Image.ANTIALIAS)
+    return img
+
+
 class Window(Frame):
     def __init__(self, master=None):
         Frame.__init__(self, master)
@@ -18,16 +25,15 @@ class Window(Frame):
         self.generate.pack()
 
     def generateGraph(self):
-        load = Image.open(graphs.graf())
+        load = resizeImage(600, Image.open(graphs.graf()))
         render = ImageTk.PhotoImage(load)
         img = Label(self, image=render)
         img.image = render
-        img.place(x=50, y=50)
+        img.pack()
 
 
 def makeWindow():
     root = Tk()
     app = Window(root)
     root.wm_title("Network Traffic Monitor")
-    root.geometry("1024x768")
     root.mainloop()
