@@ -1,16 +1,21 @@
 from tkinter import *
-import pydot
-# pip install pillow
 from PIL import Image, ImageTk
 
 from frontend import graphs
 
 
 def resizeImage(width, img):
-    wpercent = (width / float(img.size[0]))
-    hsize = int((float(img.size[1]) * float(wpercent)))
-    img = img.resize((width, hsize), Image.ANTIALIAS)
+    ratio = (width / float(img.size[0]))
+    height = int((float(img.size[1]) * float(ratio)))
+    img = img.resize((width, height), Image.ANTIALIAS)
     return img
+
+
+def makeWindow():
+    root = Tk()
+    app = Window(root)
+    root.wm_title("Network Traffic Monitor")
+    root.mainloop()
 
 
 class Window(Frame):
@@ -31,9 +36,3 @@ class Window(Frame):
         img.image = render
         img.pack()
 
-
-def makeWindow():
-    root = Tk()
-    app = Window(root)
-    root.wm_title("Network Traffic Monitor")
-    root.mainloop()
