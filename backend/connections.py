@@ -38,14 +38,14 @@ def get_devices(list_of_packets):
             if p.pair not in same_network:
                 same_network.append(p.pair)
                 if s not in local_devices:
-                    local_devices.append(s)
+                    local_devices.append(p.pair)
 
         # else put to global devices list
         else:
             if p.pair not in diff_network:
                 diff_network.append(p.pair)
-                if s not in global_devices and s[0:2] != ['192', '168']:
-                    global_devices.append(s)
+                if d not in global_devices and d[0:2] != ['192', '168']:
+                    global_devices.append(p.pair)
     return same_network, diff_network
 
 
