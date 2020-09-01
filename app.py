@@ -1,6 +1,5 @@
-from frontend import graphs, window
+from frontend import window
 
 
 if __name__ == "__main__":
-    # graphs.graf()
     window.makeWindow()
