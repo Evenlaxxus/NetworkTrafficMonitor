@@ -2,24 +2,13 @@
 digraph {
 	node [shape=plaintext]
 	node [arrowhead=none]
-	A [label="Modem
- 192.168.0.1" image="images/modem.png"]
-	B [label="Router
-192.168.0.2" image="images/router.png"]
-	C [label="Computer
- 192.168.0.3" image="images/computer.png"]
-	D [label="Computer
- 192.168.0.4" image="images/computer.png"]
-	E [label="Router
- 192.168.0.5" image="images/router.png"]
-	F [label="Computer
- 192.168.0.6" image="images/computer.png"]
-	G [label="Computer
- 192.168.0.7" image="images/computer.png"]
-	A -> B
-	A -> E
-	B -> C
-	B -> D
-	E -> F
-	E -> G
+	"192.168.0.10"
+	"192.168.0.12"
+	"192.168.0.255"
+	"192.168.0.15"
+	"192.168.0.10" -> "192.168.0.12"
+	"192.168.0.12" -> "192.168.0.10"
+	"192.168.0.12" -> "192.168.0.255"
+	"192.168.0.15" -> "192.168.0.255"
+	"192.168.0.12" -> "192.168.0.15"
 }
