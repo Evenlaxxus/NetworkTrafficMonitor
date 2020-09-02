@@ -1,5 +1,5 @@
 import os
-
+import math
 import pyshark
 from graphviz import Digraph, Graph
 
@@ -25,6 +25,7 @@ def sniffing():
 def graf():
     local_devices, global_devices = sniffing()
     addresses = []
+    global_addresses = []
     for local_device in local_devices:
         if local_device[0] not in addresses:
             addresses.append(local_device[0])
@@ -33,8 +34,10 @@ def graf():
     for global_device in global_devices:
         if global_device[0] not in addresses:
             addresses.append(global_device[0])
+            global_addresses.append(global_device[0])
         if global_device[1] not in addresses:
             addresses.append(global_device[1])
+            global_addresses.append(global_device[1])
     print(addresses)
 
     images = os.path.abspath('.\\images')
@@ -50,6 +53,34 @@ def graf():
         dot.edge(local_device[0], local_device[1], color='blue')
     for global_device in global_devices:
         dot.edge(global_device[0], global_device[1], color='red')
+    # subgraph for local network
+    with dot.subgraph() as s:
+        s.attr(rank='same')
+        for n in local_devices:
+            s.node(n[0])
+
+    columns = math.floor(math.sqrt(len(global_addresses)))
+    rows = math.ceil(len(global_addresses)/math.floor(math.sqrt(len(global_addresses))))
+    # print(rows, columns)
+    extract = (len(global_addresses) % math.floor(math.sqrt(len(global_addresses))))
+    # print(extract)
+    # print(global_addresses)
+
+    global_address_matrix = [[] for i in range(rows)]
+
+    for i in range(0, rows-1):
+        for j in range(0, len(global_addresses)-extract, columns):
+            global_address_matrix[i].append(global_addresses[j])
+
+    # NOT WORKING!!!!
+    # subgraph for global network
+    for i in range(0, rows - 1):
+        with dot.subgraph() as s:
+            s.attr(rank='same')
+            for n in global_address_matrix[i]:
+                s.node(n)
+
+
     print(dot.source)
     dot.render('../graph-output/graph.gv')
     return '../graph-output/graph.gv.png'

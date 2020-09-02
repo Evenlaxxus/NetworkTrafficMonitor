@@ -30,7 +30,7 @@ class Window(Frame):
         self.generate.pack()
 
     def generateGraph(self):
-        load = resizeImage(600, Image.open(graphs.graf()))
+        load = resizeImage(1650, Image.open(graphs.graf()))
         render = ImageTk.PhotoImage(load)
         img = Label(self, image=render)
         img.image = render
