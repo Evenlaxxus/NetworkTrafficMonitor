@@ -52,16 +52,4 @@ def get_devices(list_of_packets):
 # Reading *.pcap file.
 # TODO: file path
 # TODO: LiveCapture
-pcap = pyshark.FileCapture('dump.pcap')
 
-list_of_packets = []
-
-# Creating a list of packets from *.pcap file.
-for packet in pcap:
-    if "IP " in str(packet.layers):
-        list_of_packets.append(Packet(packet['ip'].src, packet['ip'].dst, packet['ip'].ttl, packet['ip'].id))
-
-# Get addresses and print them
-get_devices(list_of_packets)
-print("Local: ", local_devices)
-print("Global: ", global_devices)
