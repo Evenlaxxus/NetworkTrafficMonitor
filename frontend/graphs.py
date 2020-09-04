@@ -3,7 +3,7 @@ import math
 import pyshark
 from graphviz import Digraph, Graph
 
-from backend.connections import Packet, get_devices, local_devices, global_devices
+from backend.connections import Packet, get_devices
 
 
 def sniffing():
@@ -16,7 +16,7 @@ def sniffing():
             list_of_packets.append(Packet(packet['ip'].src, packet['ip'].dst, packet['ip'].ttl, packet['ip'].id))
 
     # Get addresses and print them
-    get_devices(list_of_packets)
+    same_network, diff_network, local_devices, global_devices = get_devices(list_of_packets)
     #print("Local: ", local_devices)
     print("Global: ", global_devices)
     return local_devices, global_devices

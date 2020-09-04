@@ -19,15 +19,11 @@ class Packet:
         print(self.pair, self.ttl, self.id)
 
 
-# variables for devices
-local_devices = []
-global_devices = []
-
-
 # get unique addresses
 def get_devices(list_of_packets):
     same_network, diff_network = [], []
-
+    local_devices = []
+    global_devices = []
     # checking 255.255.255.0
     for p in list_of_packets:
         s = p.pair[0].split(".", 3)
@@ -46,7 +42,7 @@ def get_devices(list_of_packets):
                 diff_network.append(p.pair)
                 if d not in global_devices and d[0:2] != ['192', '168']:
                     global_devices.append(p.pair)
-    return same_network, diff_network
+    return same_network, diff_network, local_devices, global_devices
 
 
 # Reading *.pcap file.
