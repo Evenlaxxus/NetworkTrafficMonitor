@@ -26,4 +26,3 @@ class ScrolledCanvas(Frame):
           canv.config(scrollregion=(0,0,width,height))
           self.im2=ImageTk.PhotoImage(self.im)
           self.imgtag=canv.create_image(0,0,anchor="nw",image=self.im2)
-ScrolledCanvas().mainloop()
