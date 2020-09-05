@@ -2,6 +2,7 @@ from tkinter import *
 from PIL import Image, ImageTk
 
 from frontend import graphs
+from frontend import scrolledcanvas
 
 
 def resizeImage(width, img):
@@ -30,9 +31,11 @@ class Window(Frame):
         self.generate.pack()
 
     def generateGraph(self):
-        load = resizeImage(1650, Image.open(graphs.graf()))
-        render = ImageTk.PhotoImage(load)
-        img = Label(self, image=render)
-        img.image = render
-        img.pack()
+        #load = resizeImage(600, Image.open(graphs.graf()))
+        #render = ImageTk.PhotoImage(load)
+        #img = Label(self, image=render)
+        #img.image = render
+        #img.pack()
+
+        scrolledcanvas.ScrolledCanvas().mainloop()
 
