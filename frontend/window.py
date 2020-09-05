@@ -19,23 +19,22 @@ def makeWindow():
     root.mainloop()
 
 
+def generateGraph():
+    scrolledcanvas.ScrolledCanvas().mainloop()
+
+
 class Window(Frame):
     def __init__(self, master=None):
         Frame.__init__(self, master)
         self.master = master
         self.pack(fill=BOTH, expand=1)
-        self.generate = Button(self)
-        self.generate["text"] = "Generate graph"
-        self.generate["fg"] = "red"
-        self.generate["command"] = self.generateGraph
-        self.generate.pack()
-
-    def generateGraph(self):
-        #load = resizeImage(600, Image.open(graphs.graf()))
-        #render = ImageTk.PhotoImage(load)
-        #img = Label(self, image=render)
-        #img.image = render
-        #img.pack()
-
-        scrolledcanvas.ScrolledCanvas().mainloop()
-
+        self.generate_from_file = Button(self)
+        self.generate_from_file["text"] = "Generate graph from file"
+        self.generate_from_file["fg"] = "red"
+        self.generate_from_file["command"] = generateGraph
+        self.generate_from_file.pack(side=LEFT)
+        self.generate_from_scan = Button(self)
+        self.generate_from_scan["text"] = "Generate graph"
+        self.generate_from_scan["fg"] = "red"
+        self.generate_from_scan["command"] = generateGraph
+        self.generate_from_scan.pack(side=LEFT)
