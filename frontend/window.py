@@ -19,8 +19,12 @@ def makeWindow():
     root.mainloop()
 
 
-def generateGraph():
-    scrolledcanvas.ScrolledCanvas().mainloop()
+def generateGraphFromFile():
+    scrolledcanvas.ScrolledCanvas('file').mainloop()
+
+
+def generateGraphFromLiveCapture():
+    scrolledcanvas.ScrolledCanvas('live').mainloop()
 
 
 class Window(Frame):
@@ -31,10 +35,10 @@ class Window(Frame):
         self.generate_from_file = Button(self)
         self.generate_from_file["text"] = "Generate graph from file"
         self.generate_from_file["fg"] = "red"
-        self.generate_from_file["command"] = generateGraph
+        self.generate_from_file["command"] = generateGraphFromFile
         self.generate_from_file.pack(side=LEFT)
         self.generate_from_scan = Button(self)
-        self.generate_from_scan["text"] = "Generate graph"
+        self.generate_from_scan["text"] = "Generate graph from live capture"
         self.generate_from_scan["fg"] = "red"
-        self.generate_from_scan["command"] = generateGraph
+        self.generate_from_scan["command"] = generateGraphFromLiveCapture
         self.generate_from_scan.pack(side=LEFT)

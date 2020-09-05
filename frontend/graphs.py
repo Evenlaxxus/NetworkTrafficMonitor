@@ -23,7 +23,7 @@ def sniffing():
 
 
 def live():
-    interfaces = ['Wi-Fi']
+    interfaces = ['Wi-Fi', 'Ethernet']
     cap = pyshark.LiveCapture(interface=interfaces, output_file='test.pcap')
     cap.set_debug()
     try:
@@ -45,8 +45,11 @@ def live():
     return local_devices, global_devices
 
 
-def graf():
-    local_devices, global_devices = live()
+def graf(scan_type):
+    if scan_type == 'live':
+        local_devices, global_devices = live()
+    else:
+        local_devices, global_devices = sniffing()
     addresses = []
     global_addresses = []
     for local_device in local_devices:
