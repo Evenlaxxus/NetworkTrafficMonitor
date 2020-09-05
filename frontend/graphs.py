@@ -22,8 +22,31 @@ def sniffing():
     return local_devices, global_devices
 
 
+def live():
+    interfaces = ['Wi-Fi']
+    cap = pyshark.LiveCapture(interface=interfaces, output_file='test.pcap')
+    cap.set_debug()
+    try:
+        cap.sniff(timeout=10)
+    except:
+        print("timeout")
+    cap2 = pyshark.FileCapture('test.pcap')
+    list_of_packets = []
+
+    # Creating a list of packets from *.pcap file.
+    for packet in cap2:
+        if "IP " in str(packet.layers):
+            list_of_packets.append(Packet(packet['ip'].src, packet['ip'].dst, packet['ip'].ttl, packet['ip'].id))
+
+    # Get addresses and print them
+    same_network, diff_network, local_devices, global_devices = get_devices(list_of_packets)
+    #print("Local: ", local_devices)
+    print("Global: ", global_devices)
+    return local_devices, global_devices
+
+
 def graf():
-    local_devices, global_devices = sniffing()
+    local_devices, global_devices = live()
     addresses = []
     global_addresses = []
     for local_device in local_devices:
