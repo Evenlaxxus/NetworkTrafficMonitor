@@ -6,8 +6,8 @@ from graphviz import Digraph, Graph
 from backend.connections import Packet, get_devices
 
 
-def sniffing():
-    cap = pyshark.FileCapture('backend/dump.pcap')
+def sniffing(file):
+    cap = pyshark.FileCapture(file)
     list_of_packets = []
 
     # Creating a list of packets from *.pcap file.
@@ -45,11 +45,11 @@ def live():
     return local_devices, global_devices
 
 
-def graf(scan_type):
+def graph(scan_type, file=''):
     if scan_type == 'live':
         local_devices, global_devices = live()
     else:
-        local_devices, global_devices = sniffing()
+        local_devices, global_devices = sniffing(file)
     addresses = []
     global_addresses = []
     for local_device in local_devices:

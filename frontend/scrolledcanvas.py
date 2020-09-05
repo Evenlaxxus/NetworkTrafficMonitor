@@ -5,7 +5,7 @@ from frontend import graphs
 
 
 class ScrolledCanvas(Frame):
-    def __init__(self, scan_type, parent=None):
+    def __init__(self, scan_type, file='', parent=None):
         Frame.__init__(self, parent)
         self.master.title("Spectrogram Viewer")
         self.pack(expand=YES, fill=BOTH)
@@ -21,7 +21,7 @@ class ScrolledCanvas(Frame):
         sbarV.pack(side=RIGHT, fill=Y)
         sbarH.pack(side=BOTTOM, fill=X)
         canv.pack(side=LEFT, expand=YES, fill=BOTH)
-        self.im = Image.open(graphs.graf(scan_type))
+        self.im = Image.open(graphs.graph(scan_type, file))
         width, height = self.im.size
         canv.config(scrollregion=(0, 0, width, height))
         self.im2 = ImageTk.PhotoImage(self.im)
