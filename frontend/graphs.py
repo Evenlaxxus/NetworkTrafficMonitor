@@ -23,13 +23,13 @@ def sniffing():
 
 
 def live():
-    interfaces = ['Wi-Fi', 'Ethernet']
+    interfaces = ['Wi-Fi']
     cap = pyshark.LiveCapture(interface=interfaces, output_file='test.pcap')
-    cap.set_debug()
     try:
         cap.sniff(timeout=10)
     except:
         print("timeout")
+    cap.close()
     cap2 = pyshark.FileCapture('test.pcap')
     list_of_packets = []
 
