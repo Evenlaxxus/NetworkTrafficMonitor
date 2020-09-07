@@ -43,9 +43,3 @@ def get_devices(list_of_packets):
                 if d not in global_devices and d[0:2] != ['192', '168']:
                     global_devices.append(p.pair)
     return same_network, diff_network, local_devices, global_devices
-
-
-# Reading *.pcap file.
-# TODO: file path
-# TODO: LiveCapture
-
