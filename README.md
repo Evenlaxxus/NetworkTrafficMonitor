@@ -11,3 +11,6 @@ The application was created as a project for the Basics of Information and Commu
 
 ## Documentation
 https://www.overleaf.com/read/yxrjwnvwhbcj
+
+## Youtube video link
+https://youtu.be/M63WOG_ZNpE
