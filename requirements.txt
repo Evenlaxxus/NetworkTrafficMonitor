@@ -1,6 +1,6 @@
 graphviz==0.14.1
 lxml==4.5.2
-Pillow==7.2.0
+Pillow==9.0.0
 py==1.9.0
 pydot==1.4.1
 pyparsing==2.4.7
